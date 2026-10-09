@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Поиск по финансовым документам</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <button
+        class="logo"
+        id="logoButton"
+        aria-label="На главную"
+        title="На главную"
+    >
+        <svg viewBox="0 0 48 48">
+            <circle cx="18" cy="18" r="10"></circle>
+            <line x1="26" y1="26" x2="39" y2="39"></line>
+        </svg>
+    </button>
+
+</header>
+
+
+<main class="page">
+
+    <!-- =========================
+         ОСНОВНОЙ ПОИСК
+    ========================== -->
+
+    <section class="search-section">
+
+        <div class="hero">
+
+            <div class="hero-text">
+                <h1>Найдите нужный документ</h1>
+                <p>Задай вопрос</p>
+            </div>
+
+            <img
+                class="hero-illustration"
+                src="assets/hero-search.png"
+                alt=""
+            >
+
+        </div>
+
+
+        <form
+            class="search-form"
+            id="searchForm"
+        >
+
+            <div
+                class="search-input-wrapper"
+                id="inputWrapper"
+            >
+
+                <svg
+                    class="input-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <circle cx="10" cy="10" r="6"></circle>
+                    <line x1="15" y1="15" x2="21" y2="21"></line>
+                </svg>
+
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Введите вопрос"
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    class="clear-button"
+                    id="clearButton"
+                    aria-label="Очистить запрос"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <button
+                type="submit"
+                class="search-button"
+            >
+                Найти
+            </button>
+
+        </form>
+
+
+        <div
+            class="validation-message"
+            id="validationMessage"
+        >
+            <span>!</span>
+            Введите вопрос для поиска.
+        </div>
+
+
+        <div
+            class="examples"
+            id="mainExamples"
+        >
+
+            <p>Примеры запросов:</p>
+
+            <div class="example-list">
+
+                <button
+                    type="button"
+                    data-query="Какие требования предъявляются к идентификации клиента?"
+                >
+                    Требования к идентификации клиента
+                </button>
+
+                <button
+                    type="button"
+                    data-query="В какие сроки рассматривается обращение клиента банка?"
+                >
+                    Срок рассмотрения обращения
+                </button>
+
+                <button
+                    type="button"
+                    data-query="В каких случаях банк может отказать клиенту в проведении операции?"
+                >
+                    Ограничения на проведение операций
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ЗАГРУЗКА
+    ========================== -->
+
+    <section
+        class="state-card loading-state hidden"
+        id="loadingState"
+    >
+
+        <img
+            class="loading-illustration"
+            src="assets/loading-search.png"
+            alt=""
+        >
+
+        <h2>Ищем подходящие документы...</h2>
+
+        <p>
+            Это может занять несколько секунд.
+        </p>
+
+        <div class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         РЕЗУЛЬТАТЫ
+    ========================== -->
+
+    <section
+        class="results hidden"
+        id="resultsState"
+    >
+
+        <article class="answer-card">
+
+            <div class="answer-content">
+
+                <div class="answer-header">
+
+                    <h2>
+                        Ответ по найденным материалам
+                    </h2>
+
+                    <span class="demo-badge">
+                        Демонстрационный ответ
+                    </span>
+
+                </div>
+
+                <p>
+                    Банк может ограничить или отказать в проведении операции
+                    в случаях, предусмотренных законодательством и внутренними
+                    процедурами контроля. Конкретное решение зависит от
+                    обстоятельств операции и применимых нормативных требований.
+                </p>
+
+                <div class="answer-sources">
+
+                    <span>Источники ответа:</span>
+
+                    <button
+                        type="button"
+                        data-answer-source="first"
+                    >
+                        1
+                    </button>
+
+                    <button
+                        type="button"
+                        data-answer-source="second"
+                    >
+                        2
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <img
+                class="answer-decoration"
+                src="assets/document-stack.png"
+                alt=""
+            >
+
+        </article>
+
+
+        <div class="results-heading">
+
+            <h2>Найденные документы</h2>
+
+            <span>2 результата</span>
+
+        </div>
+
+
+        <!-- результат 1 -->
+
+        <article class="result-card">
+
+            <div class="result-number">
+                1
+            </div>
+
+            <div class="result-content">
+
+                <h3>
+                    Положение Банка России № 762-П
+                </h3>
+
+                <div class="result-meta">
+
+                    <span>Банк России</span>
+
+                    <span>•</span>
+
+                    <span>Нормативный документ</span>
+
+                </div>
+
+                <p>
+                    …кредитная организация при проведении операций
+                    руководствуется установленными требованиями законодательства
+                    и внутренними процедурами контроля…
+                </p>
+
+                <button
+                    type="button"
+                    class="source-button"
+                    data-source="first"
+                >
+                    Открыть источник
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- результат 2 -->
+
+        <article class="result-card">
+
+            <div class="result-number">
+                2
+            </div>
+
+            <div class="result-content">
+
+                <h3>
+                    Федеральный закон № 115-ФЗ
+                </h3>
+
+                <div class="result-meta">
+
+                    <span>Российская Федерация</span>
+
+                    <span>•</span>
+
+                    <span>Федеральный закон</span>
+
+                </div>
+
+                <p>
+                    …кредитная организация может запросить сведения и документы
+                    в случаях, предусмотренных требованиями законодательства,
+                    регулирующего проведение финансовых операций…
+                </p>
+
+                <button
+                    type="button"
+                    class="source-button"
+                    data-source="second"
+                >
+                    Открыть источник
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- =========================
+         НИЧЕГО НЕ НАЙДЕНО
+    ========================== -->
+
+    <section
+        class="state-card no-results hidden"
+        id="noResultsState"
+    >
+
+        <img
+            class="empty-illustration"
+            src="assets/empty-search.png"
+            alt=""
+        >
+
+        <h2>
+            По вашему запросу ничего не найдено.
+        </h2>
+
+        <p>
+            Попробуйте изменить формулировку.
+        </p>
+
+
+        <div class="examples no-results-examples">
+
+            <p>Примеры запросов:</p>
+
+            <div class="example-list">
+
+                <button
+                    type="button"
+                    data-query="Какие требования предъявляются к идентификации клиента?"
+                >
+                    Требования к идентификации клиента
+                </button>
+
+                <button
+                    type="button"
+                    data-query="В какие сроки рассматривается обращение клиента банка?"
+                >
+                    Срок рассмотрения обращения
+                </button>
+
+                <button
+                    type="button"
+                    data-query="В каких случаях банк может отказать клиенту в проведении операции?"
+                >
+                    Ограничения на проведение операций
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     ЗАТЕМНЕНИЕ DRAWER
+========================== -->
+
+<div
+    class="drawer-overlay hidden"
+    id="drawerOverlay"
+></div>
+
+
+<!-- =========================
+     ИНФОРМАЦИЯ ОБ ИСТОЧНИКЕ
+========================== -->
+
+<aside
+    class="drawer"
+    id="drawer"
+>
+
+    <div class="drawer-header">
+
+        <h2>
+            Информация об источнике
+        </h2>
+
+        <button
+            type="button"
+            id="closeDrawer"
+            aria-label="Закрыть"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="drawer-body">
+
+        <h3 id="drawerTitle">
+            Положение Банка России № 762-П
+        </h3>
+
+
+        <div class="source-info">
+
+            <div>
+
+                <span>Орган</span>
+
+                <strong id="drawerOrganisation">
+                    Банк России
+                </strong>
+
+            </div>
+
+            <div>
+
+                <span>Тип</span>
+
+                <strong id="drawerType">
+                    Нормативный документ
+                </strong>
+
+            </div>
+
+            <div>
+
+                <span>Номер</span>
+
+                <strong id="drawerNumber">
+                    № 762-П
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="fragment-block">
+
+            <h4>
+                Найденный фрагмент
+            </h4>
+
+            <p id="drawerFragment">
+                Кредитная организация при проведении операций
+                руководствуется установленными законодательством
+                требованиями и внутренними процедурами контроля.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="external-button"
+            id="externalSourceButton"
+        >
+            Перейти к источнику
+            <span>↗</span>
+        </button>
+
+
+    </div>
+
+</aside>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
