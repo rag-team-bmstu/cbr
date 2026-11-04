@@ -1,527 +1,63 @@
-const form =
-    document.getElementById("searchForm");
 
-const input =
-    document.getElementById("searchInput");
 
-const logoButton =
-    document.getElementById("logoButton");
-
-const inputWrapper =
-    document.getElementById("inputWrapper");
-
-const validationMessage =
-    document.getElementById("validationMessage");
-
-const clearButton =
-    document.getElementById("clearButton");
-
-const loadingState =
-    document.getElementById("loadingState");
-
-const resultsState =
-    document.getElementById("resultsState");
-
-const noResultsState =
-    document.getElementById("noResultsState");
-
-const drawer =
-    document.getElementById("drawer");
-
-const drawerOverlay =
-    document.getElementById("drawerOverlay");
-
-const closeDrawerButton =
-    document.getElementById("closeDrawer");
-
-const externalSourceButton =
-    document.getElementById("externalSourceButton");
-
-const drawerTitle =
-    document.getElementById("drawerTitle");
-
-const drawerOrganisation =
-    document.getElementById("drawerOrganisation");
-
-const drawerType =
-    document.getElementById("drawerType");
-
-const drawerNumber =
-    document.getElementById("drawerNumber");
-
-const drawerFragment =
-    document.getElementById("drawerFragment");
-
-
-let searchTimer = null;
-
-
-/* ==============================
-   DEMO SOURCES
-============================== */
-
-const sources = {
-
-    first: {
-
-        title:
-            "Положение Банка России № 762-П",
-
-        organisation:
-            "Банк России",
-
-        type:
-            "Нормативный документ",
-
-        number:
-            "№ 762-П",
-
-        fragment:
-            "Кредитная организация при проведении операций руководствуется установленными законодательством требованиями и внутренними процедурами контроля."
-
-    },
-
-
-    second: {
-
-        title:
-            "Федеральный закон № 115-ФЗ",
-
-        organisation:
-            "Российская Федерация",
-
-        type:
-            "Федеральный закон",
-
-        number:
-            "№ 115-ФЗ",
-
-        fragment:
-            "Кредитная организация может запросить сведения и документы в случаях, предусмотренных требованиями законодательства, регулирующего проведение финансовых операций."
-
-    }
-
-};
-
-
-/* ==============================
-   STATES
-============================== */
-
-function hideStates() {
-
-    loadingState.classList.add("hidden");
-
-    resultsState.classList.add("hidden");
-
-    noResultsState.classList.add("hidden");
-
-}
-
-
-function clearValidation() {
-
-    inputWrapper.classList.remove("error");
-
-    validationMessage.classList.remove("visible");
-
-}
-
-
-function showValidation() {
-
-    inputWrapper.classList.add("error");
-
-    validationMessage.classList.add("visible");
-
-}
-
-
-function updateClearButton() {
-
-    const hasText =
-        input.value.trim().length > 0;
-
-
-    clearButton.classList.toggle(
-        "visible",
-        hasText
-    );
-
-}
-
-
-/* ==============================
-   DRAWER
-============================== */
-
-function openDrawer(sourceKey) {
-
-    const source =
-        sources[sourceKey];
-
-
-    if (!source) {
-        return;
-    }
-
-
-    drawerTitle.textContent =
-        source.title;
-
-    drawerOrganisation.textContent =
-        source.organisation;
-
-    drawerType.textContent =
-        source.type;
-
-    drawerNumber.textContent =
-        source.number;
-
-    drawerFragment.textContent =
-        source.fragment;
-
-
-    drawer.classList.add("open");
-
-    drawerOverlay.classList.remove("hidden");
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-function closeDrawer() {
-
-    drawer.classList.remove("open");
-
-    drawerOverlay.classList.add("hidden");
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-/* ==============================
-   HOME
-============================== */
-
-function resetToInitial() {
-
-    if (searchTimer) {
-
-        clearTimeout(searchTimer);
-
-        searchTimer = null;
-
-    }
-
-
-    hideStates();
-
-    closeDrawer();
-
-    clearValidation();
-
-
-    document.body.classList.remove(
-        "search-active"
-    );
-
-
-    input.value = "";
-
-    updateClearButton();
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-
-    setTimeout(
-        () => {
-            input.focus();
-        },
-        150
-    );
-
-}
-
-
-/* ==============================
-   INPUT EVENTS
-============================== */
-
-input.addEventListener(
-    "input",
-    () => {
-
-        updateClearButton();
-
-
-        if (input.value.trim()) {
-            clearValidation();
-        }
-
-    }
-);
-
-
-clearButton.addEventListener(
-    "click",
-    () => {
-
-        input.value = "";
-
-        updateClearButton();
-
-        clearValidation();
-
-        input.focus();
-
-    }
-);
-
-
-/* ==============================
-   EXAMPLE QUERIES
-============================== */
-
-document
-    .querySelectorAll("[data-query]")
-    .forEach((button) => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                input.value =
-                    button.dataset.query;
-
-                updateClearButton();
-
-                clearValidation();
-
-                input.focus();
-
-            }
-        );
-
-    });
-
-
-/* ==============================
-   SEARCH
-============================== */
-
-form.addEventListener(
-    "submit",
-    (event) => {
-
-        event.preventDefault();
-
-
-        const query =
-            input.value.trim();
-
-
-        hideStates();
-
-        clearValidation();
-
-        closeDrawer();
-
-
-        /* пустой запрос */
-
-        if (!query) {
-
-            document.body.classList.remove(
-                "search-active"
-            );
-
-            showValidation();
-
-            input.focus();
-
-            return;
-
-        }
-
-
-        /* переходим в compact mode */
-
-        document.body.classList.add(
-            "search-active"
-        );
-
-
-        /* loading */
-
-        loadingState.classList.remove(
-            "hidden"
-        );
-
-
-        if (searchTimer) {
-
-            clearTimeout(searchTimer);
-
-        }
-
-
-        searchTimer =
-            setTimeout(
-                () => {
-
-                    loadingState.classList.add(
-                        "hidden"
-                    );
-
-
-                    const normalized =
-                        query.toLowerCase();
-
-
-                    /* demo-сценарий "ничего не найдено" */
-
-                    const noResults =
-                        normalized.includes("квант") ||
-                        normalized.includes("марсиан") ||
-                        normalized.includes("нейтрино") ||
-                        normalized.includes("астроном");
-
-
-                    if (noResults) {
-
-                        noResultsState.classList.remove(
-                            "hidden"
-                        );
-
-                    } else {
-
-                        resultsState.classList.remove(
-                            "hidden"
-                        );
-
-                    }
-
-                },
-                950
-            );
-
-    }
-);
-
-
-/* ==============================
-   RESULT SOURCE BUTTONS
-============================== */
-
-document
-    .querySelectorAll(".source-button")
-    .forEach((button) => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                openDrawer(
-                    button.dataset.source
-                );
-
-            }
-        );
-
-    });
-
-
-/* ==============================
-   ANSWER SOURCE NUMBERS
-============================== */
-
-document
-    .querySelectorAll(
-        "[data-answer-source]"
-    )
-    .forEach((button) => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                openDrawer(
-                    button.dataset.answerSource
-                );
-
-            }
-        );
-
-    });
-
-
-/* ==============================
-   CLOSE DRAWER
-============================== */
-
-closeDrawerButton.addEventListener(
-    "click",
-    closeDrawer
-);
-
-
-drawerOverlay.addEventListener(
-    "click",
-    closeDrawer
-);
-
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (event.key === "Escape") {
-
-            closeDrawer();
-
-        }
-
-    }
-);
-
-
-/* ==============================
-   EXTERNAL SOURCE
-============================== */
-
-externalSourceButton.addEventListener(
-    "click",
-    () => {
-
-        alert(
-            "В демонстрационной версии переход к внешнему нормативному источнику пока не подключён."
-        );
-
-    }
-);
-
-
-/* ==============================
-   LOGO = HOME
-============================== */
-
-logoButton.addEventListener(
-    "click",
-    resetToInitial
-);
-
-
-/* ==============================
-   INIT
-============================== */
-
-updateClearButton();
+'use strict';
+// All document names, dates, excerpts and relations are demonstration data.
+const mockDocuments = [
+ ['Идентификация клиента','ДЕМО-101','Положение','active','01.02.2025',null,'Кредитная организация запрашивает сведения для идентификации клиента.',[2,3]],
+ ['Контроль финансовых операций','ДЕМО-102','Федеральный закон','active','01.03.2025',null,'Операция может потребовать дополнительных сведений и проверки обстоятельств.',[1,4]],
+ ['Рассмотрение обращений','ДЕМО-103','Указание','active','01.06.2025',null,'Обращение клиента регистрируется и рассматривается в установленный срок.',[1,5]],
+ ['Новые правила переводов','ДЕМО-104','Положение','future','01.03.2027',null,'Предусмотрен обновлённый порядок обработки переводов.',[2,6]],
+ ['Архивный порядок уведомлений','ДЕМО-105','Указание','expired','01.01.2024','15.08.2026','Архивный пример порядка направления уведомлений клиентам.',[3,7]],
+ ['Защита сведений клиента','ДЕМО-106','Федеральный закон','active','01.09.2025',null,'Сведения клиента обрабатываются с соблюдением правил конфиденциальности.',[1,4]],
+ ['Будущий порядок обращений','ДЕМО-107','Указание','future','01.04.2027',null,'Предусмотрен новый порядок ответа на обращения клиентов.',[3,5]]
+].map(([title,number,type,status,effectiveFrom,effectiveTo,fragment,relatedIds],i)=>({id:i+1,title,number,type,status,effectiveFrom,effectiveTo,fragment,relatedIds,organisation:type==='Федеральный закон'?'Демонстрационный законодатель':'Демонстрационный регулятор'}));
+const statuses={active:'Действует',future:'Не вступил в силу',expired:'Утратил силу'};
+// State and utilities. Never store passwords or read file contents.
+const $=id=>document.getElementById(id);
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const read=(k,f)=>{try{return localStorage.getItem(k)??f;}catch{return f;}};
+const write=(k,v)=>{try{localStorage.setItem(k,v);}catch{/* Session remains usable. */}};
+let user=read('mockLoggedIn','false')==='true'?read('mockUserName','Варвара'):null;
+let history=[],screen='search',statusFilter='',register=false,selectedFile=null,trail=[],returnFocus=null,searchTimer,ocrTimer;
+const doc=id=>mockDocuments.find(d=>d.id===Number(id));
+const badge=d=>`<span class="status ${d.status}">${statuses[d.status]}</span>`;
+const dates=d=>`${d.status==='future'?'Вступает в силу':'Вступил в силу'}: ${d.effectiveFrom}${d.effectiveTo?` · Утратил силу: ${d.effectiveTo}`:''}`;
+function cards(docs){return docs.map(d=>`<article class="result-card"><div class="result-number">${d.id}</div><div class="result-content"><h3>${d.title} · № ${d.number}</h3><div class="result-meta">${d.type} · ${d.organisation}</div>${badge(d)}<p>${dates(d)}</p><p>…${d.fragment}…</p><button class="source-button" data-doc="${d.id}">Подробнее →<span class="sr-only"> ${d.title}</span></button></div></article>`).join('');}
+// Navigation
+function navigate(next){window.scrollTo({top:0,behavior:'instant'});clearTimeout(searchTimer);clearTimeout(ocrTimer);closeDrawer(false);screen=next;for(const name of ['search','catalog','history','upload'])$(name+'Screen').classList.toggle('hidden',name!==next);document.querySelectorAll('nav [data-nav]').forEach(b=>{if(b.dataset.nav===next)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});closeMenu();if(next==='search')resetSearch();if(next==='catalog')renderCatalog();if(next==='history')renderHistory();if(next==='upload')renderUpload();}
+function resetSearch(){document.body.classList.remove('search-active');['loadingState','resultsState','noResultsState'].forEach(id=>$(id).classList.add('hidden'));$('searchInput').value='';updateInput();}
+function updateInput(){$('clearButton').classList.toggle('visible',!!$('searchInput').value);$('validationMessage').classList.remove('visible');$('inputWrapper').classList.remove('error');}
+// Search: deterministic mock responses, no requests.
+function resultIds(q){if(/квант|ничего|нет результатов|asdf|абракадабра/i.test(q))return [];if(/обращ|срок/i.test(q))return [3,7];if(/идентиф|клиент/i.test(q))return [1,6,2];return [2,1];}
+function showResults(query,save){const ids=resultIds(query);$('loadingState').classList.add('hidden');$(ids.length?'resultsState':'noResultsState').classList.remove('hidden');$('searchDocuments').innerHTML=cards(ids.map(doc));$('resultsState').querySelector('.results-heading span').textContent=`Найдено: ${ids.length}`;$('answerSources').textContent='Ответ сформирован на основе: '+ids.map(id=>`${doc(id).title} № ${doc(id).number}`).join('; ');$('resultsState').querySelector('.answer-content > p').textContent=/обращ|срок/i.test(query)?'В демонстрационном сценарии обращение регистрируется и рассматривается по предусмотренному порядку. Точные сроки следует уточнять в применимых документах.':/идентиф/i.test(query)?'В демонстрационном сценарии для идентификации клиента запрашиваются сведения и документы. Состав сведений зависит от ситуации.':'В демонстрационном сценарии операция может потребовать дополнительных сведений и проверки. Конкретное решение зависит от обстоятельств и применимых требований.';if(user&&save)history.unshift({query,time:new Date(),count:ids.length});}
+function search(query,save=true){clearTimeout(searchTimer);$('searchInput').value=query;updateInput();if(!query.trim()){$('validationMessage').classList.add('visible');$('inputWrapper').classList.add('error');$('searchInput').focus();return;}document.body.classList.add('search-active');['resultsState','noResultsState'].forEach(id=>$(id).classList.add('hidden'));$('loadingState').classList.remove('hidden');searchTimer=setTimeout(()=>showResults(query,save),850);}
+$('searchForm').onsubmit=e=>{e.preventDefault();search($('searchInput').value.trim());};$('searchInput').oninput=updateInput;$('clearButton').onclick=()=>{$('searchInput').value='';updateInput();$('searchInput').focus();};$('logoButton').onclick=()=>navigate('search');
+// Catalog
+$('statusFilters').innerHTML=Object.entries({'':'Все',...statuses}).map(([key,label])=>`<button data-status="${key}">${label}</button>`).join('');
+function renderCatalog(){const q=$('catalogQuery').value.trim().toLocaleLowerCase('ru');const docs=mockDocuments.filter(d=>(!statusFilter||d.status===statusFilter)&&(!$('typeFilter').value||d.type===$('typeFilter').value)&&(`${d.title} ${d.number}`.toLocaleLowerCase('ru').includes(q)));$('catalogDocuments').innerHTML=docs.length?cards(docs):'<div class="state-card"><h2>Документы не найдены</h2><p>Попробуйте изменить запрос или фильтры.</p><button class="secondary" id="resetFilters">Сбросить фильтры</button></div>';$('catalogCount').textContent=`Найдено: ${docs.length}`;document.querySelectorAll('[data-status]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.status===statusFilter)));}
+$('catalogQuery').oninput=renderCatalog;$('typeFilter').onchange=renderCatalog;
+// Auth demo
+function closeMenu(){$('accountMenu').classList.add('hidden');$('accountButton').setAttribute('aria-expanded','false');}
+function updateAccount(){$('accountButton').textContent=user?`${user} ▾`:'Войти';if(screen==='history')renderHistory();}
+function renderAuth(){$('authTitle').textContent=register?'Регистрация':'Вход';$('authSwitch').textContent=register?'Уже есть аккаунт? Войти':'Нет аккаунта? Зарегистрироваться';$('authForm').innerHTML=`${register?'<label>Имя<input class="field" name="name" required maxlength="60" autocomplete="given-name"></label>':''}<label>Email<input class="field" name="email" type="email" required autocomplete="email"></label><label>Пароль<input class="field" name="password" type="password" required autocomplete="${register?'new-password':'current-password'}"></label>${register?'<label>Повтор пароля<input class="field" name="repeat" type="password" required autocomplete="new-password"></label>':''}<p id="authError" role="alert"></p><button class="search-button">${register?'Создать аккаунт':'Войти'}</button>`;}
+function openAuth(){register=false;renderAuth();$('authDialog').showModal();}
+$('accountButton').onclick=()=>{if(!user)return openAuth();const hidden=$('accountMenu').classList.toggle('hidden');$('accountButton').setAttribute('aria-expanded',String(!hidden));};
+$('authSwitch').onclick=()=>{register=!register;renderAuth();$('authForm').querySelector('input').focus();};
+$('authForm').onsubmit=e=>{e.preventDefault();const data=new FormData(e.target);if(register&&(!data.get('name').trim()||data.get('password')!==data.get('repeat'))){$('authError').textContent='Укажите имя и проверьте совпадение паролей.';return;}user=register?data.get('name').trim():'Варвара';write('mockLoggedIn','true');write('mockUserName',user);$('authDialog').close();$('authForm').reset();updateAccount();};
+$('authDialog').addEventListener('close',()=>$('authForm').reset());$('logoutButton').onclick=()=>{user=null;history=[];write('mockLoggedIn','false');write('mockUserName','');closeMenu();updateAccount();};
+// History lives in memory for the current demo session and clears on logout.
+function renderHistory(){if(!user){$('historyScreen').innerHTML='<div class="state-card"><img class="empty-illustration" src="assets/empty-search.png" alt=""><h2>История поиска доступна после входа</h2><p>Войдите, чтобы сохранять запросы и возвращаться к ним позже.</p><button class="search-button" data-auth>Войти</button></div>';return;}$('historyScreen').innerHTML='<h1 class="screen-title">История поиска</h1><p class="demo-note">Запросы этой демонстрационной сессии</p>';if(!history.length){$('historyScreen').insertAdjacentHTML('beforeend','<div class="state-card"><h2>Пока нет запросов</h2><p>Выполните первый поиск — он появится здесь.</p><button class="secondary" data-nav="search">Перейти к поиску</button></div>');return;}const groups={};history.forEach((entry,index)=>{const today=new Date();today.setHours(0,0,0,0);const yesterday=new Date(today);yesterday.setDate(yesterday.getDate()-1);const group=entry.time>=today?'Сегодня':entry.time>=yesterday?'Вчера':'Ранее';(groups[group]??=[]).push({...entry,index});});for(const [group,entries] of Object.entries(groups))$('historyScreen').insertAdjacentHTML('beforeend',`<h2 class="group-title">${group}</h2>${entries.map(h=>`<button class="history-row" data-history="${h.index}"><span>${esc(h.query)}</span><small>${h.time.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})} · документов: ${h.count}</small></button>`).join('')}`);}
+// Shared document drawer
+function openDrawer(id,back=false){const d=doc(id);if(!d)return;if(!$('drawer').classList.contains('open'))returnFocus=document.activeElement;if(!back)trail.push(d.id);$('drawerBody').innerHTML=`${trail.length>1?'<button class="source-button" id="drawerBack">← Назад</button>':''}<h3>${d.title}</h3><p class="demo-note">Демонстрационный документ</p>${badge(d)}<div class="source-info">${[['Номер',d.number],['Тип',d.type],['Орган',d.organisation],['Статус',statuses[d.status]],[d.status==='future'?'Вступает в силу':'Вступил в силу',d.effectiveFrom],...(d.effectiveTo?[['Утратил силу',d.effectiveTo]]:[])].map(([k,v])=>`<div><span>${k}</span><strong>${v}</strong></div>`).join('')}</div><div class="fragment-block"><h4>Найденный фрагмент</h4><p>${d.fragment}</p></div><h3>Связанные документы</h3><div class="related-list">${d.relatedIds.map(id=>`<button data-related="${id}">${doc(id).title} · № ${doc(id).number} →</button>`).join('')}</div>`;$('drawer').inert=false;$('drawer').classList.add('open');$('drawerOverlay').classList.remove('hidden');document.body.style.overflow='hidden';document.querySelector('main').inert=true;document.querySelector('header').inert=true;$('drawer').scrollTop=0;$('closeDrawer').focus();}
+function closeDrawer(restore=true){const opened=$('drawer').classList.contains('open');$('drawer').classList.remove('open');$('drawer').inert=true;$('drawerOverlay').classList.add('hidden');document.body.style.overflow='';document.querySelector('main').inert=false;document.querySelector('header').inert=false;trail=[];if(opened&&restore)returnFocus?.focus();}
+$('closeDrawer').onclick=()=>closeDrawer();$('drawerOverlay').onclick=()=>closeDrawer();
+// OCR demo: file metadata only, no upload or parsing.
+function renderUpload(){$('uploadContent').innerHTML='<div class="drop-zone" id="dropZone"><img class="loading-illustration" src="assets/document-stack.png" alt=""><h2>Перетащите файл сюда</h2><p>или выберите с устройства · PNG, JPG или PDF</p><button class="secondary" data-pick>Выбрать файл</button></div><div id="selectedFile"></div><p id="fileError" role="alert"></p>';const zone=$('dropZone');zone.ondragover=e=>{e.preventDefault();zone.classList.add('drag-over');};zone.ondragleave=()=>zone.classList.remove('drag-over');zone.ondrop=e=>{e.preventDefault();zone.classList.remove('drag-over');selectFile(e.dataTransfer.files[0]);};if(selectedFile)renderSelected();}
+function renderSelected(){$('selectedFile').innerHTML=`<div class="file-card"><p>${esc(selectedFile.name)}</p><small>${(selectedFile.size/1024/1024).toFixed(2)} MB</small><div class="file-actions"><button class="search-button" id="analyzeFile">Анализировать</button><button class="secondary" id="removeFile">Удалить</button></div></div>`;}
+function selectFile(file){if(!file)return;if(!/\.(png|jpe?g|pdf)$/i.test(file.name)){$('fileError').textContent='Выберите PNG, JPG или PDF.';return;}selectedFile=file;$('fileError').textContent='';renderSelected();}
+$('fileInput').onchange=e=>{selectFile(e.target.files[0]);e.target.value='';};$('uploadButton').onclick=()=>{navigate('upload');$('fileInput').click();};
+function analyze(){if(!selectedFile)return;window.scrollTo({top:0,behavior:'instant'});const failed=/error/i.test(selectedFile.name);$('uploadContent').innerHTML='<div class="state-card" role="status"><img class="loading-illustration" src="assets/loading-search.png" alt=""><h2 id="ocrStage">Распознаём документ...</h2><p>Это может занять несколько секунд</p><div class="loading-dots"><span></span><span></span><span></span></div></div>';ocrTimer=setTimeout(()=>{$('ocrStage').textContent='Ищем похожие документы...';ocrTimer=setTimeout(()=>{if(failed){$('uploadContent').innerHTML='<div class="state-card"><h2>Не удалось распознать документ</h2><p>Попробуйте загрузить изображение более высокого качества.</p><button class="secondary" id="retryUpload">Загрузить другой файл</button></div>';return;}$('uploadContent').innerHTML=`<h2 class="screen-title">Результат анализа</h2><p class="demo-note">Демонстрационный результат</p><h3>Наиболее похожий документ</h3>${cards([doc(1)])}<div class="fragment-block"><h4>Распознанный фрагмент · demo-текст</h4><p>«…кредитная организация обязана идентифицировать клиента…»</p></div><h3>Связанные документы</h3>${cards(doc(1).relatedIds.map(doc))}<button class="secondary" id="retryUpload">Загрузить другой файл</button>`;},850);},850);}
+// Actions
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!e.target.closest('.account'))closeMenu();if(!b)return;if(b.hasAttribute('data-nav'))navigate(b.dataset.nav);if(b.hasAttribute('data-query')){$('searchInput').value=b.dataset.query;updateInput();$('searchInput').focus();}if(b.hasAttribute('data-status')){statusFilter=b.dataset.status;renderCatalog();}if(b.hasAttribute('data-doc')){trail=[];openDrawer(b.dataset.doc);}if(b.hasAttribute('data-related'))openDrawer(b.dataset.related);if(b.hasAttribute('data-auth'))openAuth();if(b.hasAttribute('data-close-auth'))$('authDialog').close();if(b.hasAttribute('data-history')){const entry=history[Number(b.dataset.history)];navigate('search');search(entry.query,false);}if(b.hasAttribute('data-pick'))$('fileInput').click();if(b.id==='drawerBack'){trail.pop();openDrawer(trail.at(-1),true);}if(b.id==='analyzeFile')analyze();if(b.id==='removeFile'){selectedFile=null;renderUpload();}if(b.id==='retryUpload'){selectedFile=null;renderUpload();$('fileInput').click();}if(b.id==='resetFilters'){$('catalogQuery').value='';$('typeFilter').value='';statusFilter='';renderCatalog();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeMenu();}if(e.key==='Tab'&&$('drawer').classList.contains('open')){const buttons=[...$('drawer').querySelectorAll('button')];const first=buttons[0],last=buttons.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+updateAccount();navigate('search');

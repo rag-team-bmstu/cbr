@@ -27,13 +27,11 @@
         aria-label="На главную"
         title="На главную"
     >
-        <svg viewBox="0 0 48 48">
-            <circle cx="18" cy="18" r="10"></circle>
-            <line x1="26" y1="26" x2="39" y2="39"></line>
-        </svg>
+        <img src="assets/hero-search.png" alt="">
     </button>
 
-</header>
+<nav aria-label="Основная навигация"><button data-nav="search" aria-current="page">Поиск</button><button data-nav="catalog">Каталог</button><button data-nav="history">История</button></nav>
+<div class="account"><button id="accountButton" class="secondary" aria-expanded="false">Войти</button><div id="accountMenu" class="account-menu hidden"><button data-nav="history">История</button><button id="logoutButton">Выйти</button></div></div></header>
 
 
 <main class="page">
@@ -42,7 +40,7 @@
          ОСНОВНОЙ ПОИСК
     ========================== -->
 
-    <section class="search-section">
+    <div id="searchScreen"><section class="search-section">
 
         <div class="hero">
 
@@ -82,7 +80,7 @@
                 <input
                     id="searchInput"
                     type="text"
-                    placeholder="Введите вопрос"
+                    aria-label="Введите вопрос" placeholder="Введите вопрос"
                     autocomplete="off"
                 >
 
@@ -104,7 +102,7 @@
                 Найти
             </button>
 
-        </form>
+        </form><button type="button" id="uploadButton" class="secondary upload-button">Загрузить документ</button>
 
 
         <div
@@ -215,25 +213,7 @@
                     обстоятельств операции и применимых нормативных требований.
                 </p>
 
-                <div class="answer-sources">
-
-                    <span>Источники ответа:</span>
-
-                    <button
-                        type="button"
-                        data-answer-source="first"
-                    >
-                        1
-                    </button>
-
-                    <button
-                        type="button"
-                        data-answer-source="second"
-                    >
-                        2
-                    </button>
-
-                </div>
+                <div class="answer-sources" id="answerSources"></div>
 
             </div>
 
@@ -256,93 +236,7 @@
         </div>
 
 
-        <!-- результат 1 -->
-
-        <article class="result-card">
-
-            <div class="result-number">
-                1
-            </div>
-
-            <div class="result-content">
-
-                <h3>
-                    Положение Банка России № 762-П
-                </h3>
-
-                <div class="result-meta">
-
-                    <span>Банк России</span>
-
-                    <span>•</span>
-
-                    <span>Нормативный документ</span>
-
-                </div>
-
-                <p>
-                    …кредитная организация при проведении операций
-                    руководствуется установленными требованиями законодательства
-                    и внутренними процедурами контроля…
-                </p>
-
-                <button
-                    type="button"
-                    class="source-button"
-                    data-source="first"
-                >
-                    Открыть источник
-                    <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- результат 2 -->
-
-        <article class="result-card">
-
-            <div class="result-number">
-                2
-            </div>
-
-            <div class="result-content">
-
-                <h3>
-                    Федеральный закон № 115-ФЗ
-                </h3>
-
-                <div class="result-meta">
-
-                    <span>Российская Федерация</span>
-
-                    <span>•</span>
-
-                    <span>Федеральный закон</span>
-
-                </div>
-
-                <p>
-                    …кредитная организация может запросить сведения и документы
-                    в случаях, предусмотренных требованиями законодательства,
-                    регулирующего проведение финансовых операций…
-                </p>
-
-                <button
-                    type="button"
-                    class="source-button"
-                    data-source="second"
-                >
-                    Открыть источник
-                    <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
+<div id="searchDocuments"></div>
     </section>
 
 
@@ -403,7 +297,13 @@
 
     </section>
 
-</main>
+</div>
+<section id="catalogScreen" class="hidden"><h1 class="screen-title">Каталог документов</h1><p class="subtitle">Нормативные документы финансовой сферы</p><p class="demo-note">Демонстрационные документы, реквизиты и связи</p><input class="field" id="catalogQuery" aria-label="Поиск по названию или номеру документа" placeholder="Поиск по названию или номеру документа"><div id="statusFilters" class="filters"></div><label class="type-label">Тип документа <select id="typeFilter" class="field"><option value="">Все типы</option><option>Федеральный закон</option><option>Положение</option><option>Указание</option></select></label><p id="catalogCount" role="status"></p><div id="catalogDocuments"></div></section>
+<section id="historyScreen" class="hidden"></section>
+<section id="uploadScreen" class="hidden"><h1 class="screen-title">Загрузить документ</h1><p class="subtitle">Найдите похожий документ по скану или файлу</p><p class="demo-note">Демонстрация: файл остаётся на устройстве, содержимое не анализируется.</p><div id="uploadContent"></div></section>
+<p class="prototype-note">Frontend-прототип · демонстрационные данные</p></main>
+<input id="fileInput" type="file" accept=".png,.jpg,.jpeg,.pdf" hidden>
+<dialog id="authDialog" aria-labelledby="authTitle"><button class="dialog-close" data-close-auth aria-label="Закрыть">×</button><h2 id="authTitle">Вход</h2><p class="demo-note">Демонстрационный вход. Используйте вымышленные данные.</p><form id="authForm"></form><button id="authSwitch" class="source-button"></button></dialog>
 
 
 <!-- =========================
@@ -422,13 +322,13 @@
 
 <aside
     class="drawer"
-    id="drawer"
+    id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerHeading" inert
 >
 
     <div class="drawer-header">
 
-        <h2>
-            Информация об источнике
+        <h2 id="drawerHeading">
+            Информация о документе
         </h2>
 
         <button
@@ -442,74 +342,7 @@
     </div>
 
 
-    <div class="drawer-body">
-
-        <h3 id="drawerTitle">
-            Положение Банка России № 762-П
-        </h3>
-
-
-        <div class="source-info">
-
-            <div>
-
-                <span>Орган</span>
-
-                <strong id="drawerOrganisation">
-                    Банк России
-                </strong>
-
-            </div>
-
-            <div>
-
-                <span>Тип</span>
-
-                <strong id="drawerType">
-                    Нормативный документ
-                </strong>
-
-            </div>
-
-            <div>
-
-                <span>Номер</span>
-
-                <strong id="drawerNumber">
-                    № 762-П
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="fragment-block">
-
-            <h4>
-                Найденный фрагмент
-            </h4>
-
-            <p id="drawerFragment">
-                Кредитная организация при проведении операций
-                руководствуется установленными законодательством
-                требованиями и внутренними процедурами контроля.
-            </p>
-
-        </div>
-
-
-        <button
-            type="button"
-            class="external-button"
-            id="externalSourceButton"
-        >
-            Перейти к источнику
-            <span>↗</span>
-        </button>
-
-
-    </div>
+    <div class="drawer-body" id="drawerBody"></div>
 
 </aside>
 
