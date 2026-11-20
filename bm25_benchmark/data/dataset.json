@@ -1,0 +1,17 @@
+{
+  "name": "CBR Retrieval",
+  "version": "1.6",
+  "snapshot_date": "2026-11-19",
+  "corpus_updated": "2026-11-20",
+  "corpus": "Единый корпус финансовых документов с действующими редакциями ЭБПИ, справочными материалами и архивом официальных публикаций Банка России",
+  "judgment_method": "Первичная разметка по содержанию публикаций до прогонов BM25",
+  "ai_review": {
+    "date": "2026-11-19",
+    "split": "test",
+    "questions_reviewed": 15,
+    "judgments_reviewed": 56,
+    "distinct_sources_reviewed": 24
+  },
+  "human_review": "confirmed",
+  "human_review_date": "2026-11-20"
+}

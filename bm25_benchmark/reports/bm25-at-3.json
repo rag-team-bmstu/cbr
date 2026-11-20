@@ -1,0 +1,1604 @@
+{
+  "dataset": {
+    "name": "CBR Retrieval",
+    "version": "1.6",
+    "snapshot_date": "2026-11-19",
+    "corpus_updated": "2026-11-20",
+    "corpus": "Единый корпус финансовых документов с действующими редакциями ЭБПИ, справочными материалами и архивом официальных публикаций Банка России",
+    "judgment_method": "Первичная разметка по содержанию публикаций до прогонов BM25",
+    "ai_review": {
+      "date": "2026-11-19",
+      "split": "test",
+      "questions_reviewed": 15,
+      "judgments_reviewed": 56,
+      "distinct_sources_reviewed": 24
+    },
+    "human_review": "confirmed",
+    "human_review_date": "2026-11-20"
+  },
+  "corpus_sha256": "92c029e36349ceef6760bb6df40892ba6876db050f8eafdd5ff68d35ff042b31",
+  "questions_sha256": "5ca95c7c5e4b08ec02f43e0dfa0fbb4b3a7875a45e10bb55d5af6d6569527c2e",
+  "documents": 4097,
+  "passages": 166523,
+  "top_k": 3,
+  "k1": 1.2,
+  "b": 0.75,
+  "runs": [
+    {
+      "tokenizer": "basic",
+      "snowballstemmer_version": null,
+      "split": "dev",
+      "queries": 3,
+      "recall_at_k": 0.4444444444444444,
+      "mrr_at_k": 0.5,
+      "recall_ceiling_at_k": 1,
+      "zero_hit_queries": 1,
+      "per_query": [
+        {
+          "query_id": "d01",
+          "question": "Банк лишился лицензии. Сколько по обычным вкладам выплатят одному вкладчику?",
+          "topic": "deposit-insurance",
+          "relevant_document_ids": [
+            "banking-faq",
+            "deposit-revocation",
+            "deposit-rfi"
+          ],
+          "missed_document_ids": [
+            "deposit-rfi"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "deposit-revocation",
+              "passage_id": "deposit-revocation#13",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/5078",
+              "score": 19.554541914894674,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-faq-rcb-bankrotstvo-brokera",
+              "passage_id": "cbr-faq-rcb-bankrotstvo-brokera#04",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/7202",
+              "score": 16.233684439337377,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "banking-faq",
+              "passage_id": "banking-faq#12",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/5076",
+              "score": 15.754656274985901,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "d02",
+          "question": "Сколько бесплатных отчётов о своей кредитной истории можно заказать за год?",
+          "topic": "credit-history",
+          "relevant_document_ids": [
+            "credit-history-faq",
+            "credit-history-rating",
+            "credit-history-report"
+          ],
+          "missed_document_ids": [
+            "credit-history-rating"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 0.5,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-faq-dr",
+              "passage_id": "cbr-faq-dr#38",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11832",
+              "score": 18.256958593797087,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "credit-history-faq",
+              "passage_id": "credit-history-faq#15",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/3147",
+              "score": 14.774618625591225,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "credit-history-report",
+              "passage_id": "credit-history-report#01",
+              "url": "https://www.cbr.ru/Collection/Collection/File/19699/ar_2018.pdf",
+              "score": 14.654556287031427,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "d03",
+          "question": "Где узнать, имеет ли финансовая компания разрешение на свою деятельность?",
+          "topic": "licensing",
+          "relevant_document_ids": [
+            "finorg",
+            "illegal-activity",
+            "warning-list"
+          ],
+          "missed_document_ids": [
+            "finorg",
+            "illegal-activity",
+            "warning-list"
+          ],
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-insurance-explained-finstab-ssd",
+              "passage_id": "cbr-insurance-explained-finstab-ssd#53",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/6023",
+              "score": 14.554125029842881,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-faq-pens-k-inv",
+              "passage_id": "cbr-faq-pens-k-inv#01",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/3132",
+              "score": 13.467300683346188,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-explan-590-p",
+              "passage_id": "cbr-explan-590-p#46",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/7262",
+              "score": 12.596854104433948,
+              "relevant": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tokenizer": "basic",
+      "snowballstemmer_version": null,
+      "split": "test",
+      "queries": 15,
+      "recall_at_k": 0.4011111111111111,
+      "mrr_at_k": 0.7,
+      "recall_ceiling_at_k": 0.8533333333333333,
+      "zero_hit_queries": 4,
+      "per_query": [
+        {
+          "query_id": "t01",
+          "question": "Я подал претензию в МФО. Сколько времени обычно отведено на ответ с момента её регистрации?",
+          "topic": "appeals",
+          "relevant_document_ids": [
+            "appeals-explainer",
+            "appeals-faq",
+            "appeals-letter",
+            "appeals-news",
+            "complaints-faq",
+            "complaints-guide"
+          ],
+          "missed_document_ids": [
+            "appeals-explainer",
+            "appeals-faq",
+            "appeals-letter",
+            "complaints-faq",
+            "complaints-guide"
+          ],
+          "recall": 0.16666666666666666,
+          "reciprocal_rank": 0.5,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-faq-insh",
+              "passage_id": "cbr-faq-insh#26",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/2806",
+              "score": 16.991114264396288,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "appeals-news",
+              "passage_id": "appeals-news#01",
+              "url": "https://www.cbr.ru/press/event/?id=28474",
+              "score": 15.35332589098735,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-explan-obraschenie-obligaciy",
+              "passage_id": "cbr-explan-obraschenie-obligaciy#06",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11568",
+              "score": 15.276378566964048,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t02",
+          "question": "Для рассмотрения жалобы банку нужны дополнительные бумаги. На какой срок банк может отложить ответ?",
+          "topic": "appeals",
+          "relevant_document_ids": [
+            "appeals-explainer",
+            "appeals-faq",
+            "appeals-letter",
+            "complaints-faq",
+            "complaints-guide"
+          ],
+          "missed_document_ids": [
+            "appeals-letter",
+            "complaints-guide"
+          ],
+          "recall": 0.6,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "complaints-faq",
+              "passage_id": "complaints-faq#02",
+              "url": "https://www.cbr.ru/faq/zhaloby-v-bank-rossii-/",
+              "score": 22.581057210859274,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "appeals-faq",
+              "passage_id": "appeals-faq#05",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/9553",
+              "score": 21.109024192878966,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "appeals-explainer",
+              "passage_id": "appeals-explainer#08",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/9618",
+              "score": 20.48422653013477,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t03",
+          "question": "Если сразу написать регулятору о споре со страховой компанией, кто обычно будет разбирать претензию?",
+          "topic": "appeals",
+          "relevant_document_ids": [
+            "appeals-faq",
+            "complaints-faq",
+            "complaints-guide"
+          ],
+          "missed_document_ids": [
+            "complaints-faq"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "appeals-faq",
+              "passage_id": "appeals-faq#02",
+              "url": "https://www.cbr.ru/faq/zhaloby-v-bank-rossii-/442-fz/",
+              "score": 19.07625083973291,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-faq-insh",
+              "passage_id": "cbr-faq-insh#29",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/2562",
+              "score": 18.69086976355053,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "complaints-guide",
+              "passage_id": "complaints-guide#02",
+              "url": "https://www.cbr.ru/protection_rights/",
+              "score": 17.902135110285908,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t04",
+          "question": "Хочу запретить выдачу новых займов на своё имя. Куда подать заявление и где появится запись?",
+          "topic": "self-ban",
+          "relevant_document_ids": [
+            "selfban-guide",
+            "selfban-launch",
+            "selfban-slides"
+          ],
+          "missed_document_ids": [
+            "selfban-guide",
+            "selfban-launch",
+            "selfban-slides"
+          ],
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "bankruptcy-fns",
+              "passage_id": "bankruptcy-fns#01",
+              "url": "https://www.nalog.gov.ru/rn50/news/activities_fts/16541387/",
+              "score": 19.220759789318233,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-explan-obraschenie-obligaciy",
+              "passage_id": "cbr-explan-obraschenie-obligaciy#04",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11745",
+              "score": 18.84592951122583,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "banking-faq",
+              "passage_id": "banking-faq#03",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/7422",
+              "score": 17.066572940405567,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t05",
+          "question": "Могу ли я перекрыть только онлайн-займы в МФО, сохранив возможность сходить в офис?",
+          "topic": "self-ban",
+          "relevant_document_ids": [
+            "selfban-guide",
+            "selfban-launch",
+            "selfban-slides"
+          ],
+          "missed_document_ids": [
+            "selfban-guide",
+            "selfban-launch",
+            "selfban-slides"
+          ],
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-faq-bank-s-second-hand-service",
+              "passage_id": "cbr-faq-bank-s-second-hand-service#04",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11213",
+              "score": 13.579844082866362,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-faq-dr",
+              "passage_id": "cbr-faq-dr#33",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11827",
+              "score": 12.714552497459374,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-explan-form-0420832",
+              "passage_id": "cbr-explan-form-0420832#01",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11181",
+              "score": 11.313213103183404,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t06",
+          "question": "Кредитор оформил потребительский заём вопреки действующему самозапрету. Может ли он требовать погашения?",
+          "topic": "self-ban",
+          "relevant_document_ids": [
+            "selfban-guide",
+            "selfban-launch",
+            "selfban-report"
+          ],
+          "missed_document_ids": [
+            "selfban-guide",
+            "selfban-report"
+          ],
+          "recall": 0.3333333333333333,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "selfban-launch",
+              "passage_id": "selfban-launch#02",
+              "url": "https://www.cbr.ru/press/event/?id=23423",
+              "score": 25.320699960577947,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-faq-bank-s-kredity",
+              "passage_id": "cbr-faq-bank-s-kredity#19",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/6447",
+              "score": 19.009551970184184,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-explan-measures-support-citizens-economy",
+              "passage_id": "cbr-explan-measures-support-citizens-economy#04",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/5905",
+              "score": 18.25653843295072,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t07",
+          "question": "Подписал обычный потребительский заём на 120 тысяч рублей. Когда деньги станут доступны?",
+          "topic": "credit-cooling",
+          "relevant_document_ids": [
+            "loan-cooling-faq",
+            "loan-cooling-launch",
+            "loan-cooling-law-news",
+            "loan-cooling-report"
+          ],
+          "missed_document_ids": [
+            "loan-cooling-law-news",
+            "loan-cooling-report"
+          ],
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "loan-cooling-faq",
+              "passage_id": "loan-cooling-faq#03",
+              "url": "https://www.cbr.ru/faq/information_security/cooling-off_period/",
+              "score": 24.413902649795723,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "loan-cooling-launch",
+              "passage_id": "loan-cooling-launch#01",
+              "url": "https://www.cbr.ru/press/event/?id=26876",
+              "score": 19.98781551219574,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-faq-dkp-01",
+              "passage_id": "cbr-faq-dkp-01#08",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11555",
+              "score": 18.72294869845716,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t08",
+          "question": "Перекредитовываюсь на ту же сумму, размер прежнего долга не увеличивается. Нужна ли отсрочка выдачи?",
+          "topic": "credit-cooling",
+          "relevant_document_ids": [
+            "loan-cooling-faq",
+            "loan-cooling-launch",
+            "loan-cooling-law-news"
+          ],
+          "missed_document_ids": [
+            "loan-cooling-faq",
+            "loan-cooling-launch",
+            "loan-cooling-law-news"
+          ],
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-explan-measures-support-citizens-economy",
+              "passage_id": "cbr-explan-measures-support-citizens-economy#52",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/5900",
+              "score": 15.55064380872549,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-explan-590-p",
+              "passage_id": "cbr-explan-590-p#29",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/7258",
+              "score": 15.379867880030568,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-explan-dfs-pdnz-dfs-pdnz-6579-u",
+              "passage_id": "cbr-explan-dfs-pdnz-dfs-pdnz-6579-u#12",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/10857",
+              "score": 13.077305559523897,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t09",
+          "question": "Покупаю машину в кредит под её залог, деньги сразу идут автосалону-юрлицу. Обязательно ли ждать 48 часов?",
+          "topic": "credit-cooling",
+          "relevant_document_ids": [
+            "auto-cooling",
+            "auto-cooling-letter",
+            "loan-cooling-faq",
+            "loan-cooling-launch",
+            "loan-cooling-law-news"
+          ],
+          "missed_document_ids": [
+            "auto-cooling-letter",
+            "loan-cooling-launch",
+            "loan-cooling-law-news"
+          ],
+          "recall": 0.4,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "auto-cooling",
+              "passage_id": "auto-cooling#01",
+              "url": "https://www.cbr.ru/press/event/?id=26805",
+              "score": 24.188326417495375,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "credit-history-faq",
+              "passage_id": "credit-history-faq#28",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/9693",
+              "score": 22.00811819253593,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "loan-cooling-faq",
+              "passage_id": "loan-cooling-faq#04",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11225",
+              "score": 21.34442529651726,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t10",
+          "question": "Какую сумму за месяц можно перекинуть без комиссии на свой счёт в другой кредитной организации?",
+          "topic": "own-transfers",
+          "relevant_document_ids": [
+            "banking-faq",
+            "sbp-guide",
+            "transfer-daily",
+            "transfer-explainer",
+            "transfer-launch"
+          ],
+          "missed_document_ids": [
+            "sbp-guide",
+            "transfer-daily"
+          ],
+          "recall": 0.6,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "banking-faq",
+              "passage_id": "banking-faq#57",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11175",
+              "score": 22.24394037450499,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "transfer-explainer",
+              "passage_id": "transfer-explainer#05",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/10815",
+              "score": 17.041554025385466,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "transfer-launch",
+              "passage_id": "transfer-launch#01",
+              "url": "https://www.cbr.ru/press/event/?id=18658",
+              "score": 14.97804977799325,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t11",
+          "question": "Чтобы пополнить свой счёт в другом банке через СБП, можно использовать телефон вместо реквизитов?",
+          "topic": "own-transfers",
+          "relevant_document_ids": [
+            "sbp-guide",
+            "transfer-daily",
+            "transfer-launch"
+          ],
+          "missed_document_ids": [
+            "sbp-guide",
+            "transfer-daily",
+            "transfer-launch"
+          ],
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-explan-form-0409264",
+              "passage_id": "cbr-explan-form-0409264#40",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/8832",
+              "score": 18.965520768860763,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-faq-oper-br",
+              "passage_id": "cbr-faq-oper-br#02",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/5832",
+              "score": 17.546364450835686,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-faqnew-br",
+              "passage_id": "cbr-faqnew-br#06",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/2629",
+              "score": 17.40147651713807,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t12",
+          "question": "Может ли банк ограничить, сколько раз в день я перечисляю деньги себе в другой банк в пределах месячного лимита?",
+          "topic": "own-transfers",
+          "relevant_document_ids": [
+            "banking-faq",
+            "transfer-daily",
+            "transfer-explainer",
+            "transfer-launch"
+          ],
+          "missed_document_ids": [
+            "transfer-daily"
+          ],
+          "recall": 0.75,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "transfer-launch",
+              "passage_id": "transfer-launch#02",
+              "url": "https://www.cbr.ru/press/event/?id=18658",
+              "score": 32.77242894097856,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "transfer-explainer",
+              "passage_id": "transfer-explainer#03",
+              "url": "https://www.cbr.ru/explan/482-fz/",
+              "score": 24.278884887845777,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "banking-faq",
+              "passage_id": "banking-faq#29",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/9137",
+              "score": 22.792354687673054,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t13",
+          "question": "Получатель есть в базе мошеннических операций ЦБ. Проведёт ли банк перевод, если я подтвержу его в первый день?",
+          "topic": "fraud-transfers",
+          "relevant_document_ids": [
+            "fraud-block-faq",
+            "fraud-security-faq",
+            "fraud-transfer-news"
+          ],
+          "missed_document_ids": [
+            "fraud-security-faq"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "fraud-transfer-news",
+              "passage_id": "fraud-transfer-news#01",
+              "url": "https://www.cbr.ru/press/event/?id=18865",
+              "score": 31.721304729177348,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "fraud-block-faq",
+              "passage_id": "fraud-block-faq#01",
+              "url": "https://www.cbr.ru/faq/information_security/blokirovka-kart/",
+              "score": 24.607990701263855,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "loan-cooling-faq",
+              "passage_id": "loan-cooling-faq#10",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11231",
+              "score": 19.52298624573499,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t14",
+          "question": "Банк сразу пропустил мошеннический перевод на счёт из базы ЦБ. Должен ли он компенсировать потерю?",
+          "topic": "fraud-transfers",
+          "relevant_document_ids": [
+            "fraud-block-faq",
+            "fraud-security-faq",
+            "fraud-transfer-news"
+          ],
+          "missed_document_ids": [
+            "fraud-block-faq"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "fraud-security-faq",
+              "passage_id": "fraud-security-faq#01",
+              "url": "https://www.cbr.ru/faq/information_security/",
+              "score": 35.13654429838378,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "fraud-transfer-news",
+              "passage_id": "fraud-transfer-news#01",
+              "url": "https://www.cbr.ru/press/event/?id=18865",
+              "score": 26.562913755400412,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "fincult-iis3",
+              "passage_id": "fincult-iis3#03",
+              "url": "https://fincult.info/article/chto-takoe-iis-3/",
+              "score": 19.172383448486663,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t15",
+          "question": "Я сам повторил платёж на ту же сумму и по тем же реквизитам после двухдневной паузы и предупреждения. Вернёт ли банк деньги?",
+          "topic": "fraud-transfers",
+          "relevant_document_ids": [
+            "fraud-block-faq",
+            "fraud-security-faq",
+            "fraud-transfer-news"
+          ],
+          "missed_document_ids": [
+            "fraud-security-faq"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "fraud-block-faq",
+              "passage_id": "fraud-block-faq#05",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11404",
+              "score": 28.560102468206964,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "fraud-transfer-news",
+              "passage_id": "fraud-transfer-news#02",
+              "url": "https://www.cbr.ru/press/event/?id=18865",
+              "score": 19.272579941861338,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-faq-rcb",
+              "passage_id": "cbr-faq-rcb#02",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/6140",
+              "score": 17.336045005405104,
+              "relevant": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tokenizer": "stem",
+      "snowballstemmer_version": "3.1.1",
+      "split": "dev",
+      "queries": 3,
+      "recall_at_k": 0.7777777777777778,
+      "mrr_at_k": 1.0,
+      "recall_ceiling_at_k": 1,
+      "zero_hit_queries": 0,
+      "per_query": [
+        {
+          "query_id": "d01",
+          "question": "Банк лишился лицензии. Сколько по обычным вкладам выплатят одному вкладчику?",
+          "topic": "deposit-insurance",
+          "relevant_document_ids": [
+            "banking-faq",
+            "deposit-revocation",
+            "deposit-rfi"
+          ],
+          "missed_document_ids": [],
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "deposit-rfi",
+              "passage_id": "deposit-rfi#01",
+              "url": "https://www.cbr.ru/press/pr/?file=04062021_083153pr.htm",
+              "score": 27.105483999604267,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "deposit-revocation",
+              "passage_id": "deposit-revocation#01",
+              "url": "https://www.cbr.ru/faq/bank_s/otzyv_licenzii/",
+              "score": 25.472801098605053,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "banking-faq",
+              "passage_id": "banking-faq#02",
+              "url": "https://www.cbr.ru/faq/bank_s/",
+              "score": 20.35818293264341,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "d02",
+          "question": "Сколько бесплатных отчётов о своей кредитной истории можно заказать за год?",
+          "topic": "credit-history",
+          "relevant_document_ids": [
+            "credit-history-faq",
+            "credit-history-rating",
+            "credit-history-report"
+          ],
+          "missed_document_ids": [
+            "credit-history-rating"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "credit-history-faq",
+              "passage_id": "credit-history-faq#15",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/3147",
+              "score": 23.640409514732696,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "credit-history-report",
+              "passage_id": "credit-history-report#01",
+              "url": "https://www.cbr.ru/Collection/Collection/File/19699/ar_2018.pdf",
+              "score": 19.064984268510297,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-faq-dr",
+              "passage_id": "cbr-faq-dr#38",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11832",
+              "score": 16.479663976441117,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "d03",
+          "question": "Где узнать, имеет ли финансовая компания разрешение на свою деятельность?",
+          "topic": "licensing",
+          "relevant_document_ids": [
+            "finorg",
+            "illegal-activity",
+            "warning-list"
+          ],
+          "missed_document_ids": [
+            "finorg"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "warning-list",
+              "passage_id": "warning-list#01",
+              "url": "https://www.cbr.ru/inside/warning-list/",
+              "score": 17.105590408509062,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-faq-insh-osago",
+              "passage_id": "cbr-faq-insh-osago#61",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/8680",
+              "score": 16.03719451241576,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "illegal-activity",
+              "passage_id": "illegal-activity#01",
+              "url": "https://www.cbr.ru/inside/k_illegals/",
+              "score": 15.9389527551876,
+              "relevant": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tokenizer": "stem",
+      "snowballstemmer_version": "3.1.1",
+      "split": "test",
+      "queries": 15,
+      "recall_at_k": 0.5244444444444444,
+      "mrr_at_k": 0.7666666666666667,
+      "recall_ceiling_at_k": 0.8533333333333333,
+      "zero_hit_queries": 1,
+      "per_query": [
+        {
+          "query_id": "t01",
+          "question": "Я подал претензию в МФО. Сколько времени обычно отведено на ответ с момента её регистрации?",
+          "topic": "appeals",
+          "relevant_document_ids": [
+            "appeals-explainer",
+            "appeals-faq",
+            "appeals-letter",
+            "appeals-news",
+            "complaints-faq",
+            "complaints-guide"
+          ],
+          "missed_document_ids": [
+            "appeals-explainer",
+            "appeals-faq",
+            "appeals-letter",
+            "appeals-news",
+            "complaints-faq",
+            "complaints-guide"
+          ],
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-faq-insh",
+              "passage_id": "cbr-faq-insh#29",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/2562",
+              "score": 18.761507618351416,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "cbr-explan-obraschenie-obligaciy",
+              "passage_id": "cbr-explan-obraschenie-obligaciy#06",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11568",
+              "score": 14.948417813233515,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-faq-fintekh",
+              "passage_id": "cbr-faq-fintekh#08",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/2670",
+              "score": 12.913777185641713,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t02",
+          "question": "Для рассмотрения жалобы банку нужны дополнительные бумаги. На какой срок банк может отложить ответ?",
+          "topic": "appeals",
+          "relevant_document_ids": [
+            "appeals-explainer",
+            "appeals-faq",
+            "appeals-letter",
+            "complaints-faq",
+            "complaints-guide"
+          ],
+          "missed_document_ids": [
+            "appeals-explainer",
+            "appeals-faq",
+            "appeals-letter",
+            "complaints-guide"
+          ],
+          "recall": 0.2,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "complaints-faq",
+              "passage_id": "complaints-faq#10",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/7918",
+              "score": 19.138272808181732,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "banking-faq",
+              "passage_id": "banking-faq#25",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/5447",
+              "score": 17.3808406797213,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-faq-insh",
+              "passage_id": "cbr-faq-insh#25",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/2809",
+              "score": 16.68317467130204,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t03",
+          "question": "Если сразу написать регулятору о споре со страховой компанией, кто обычно будет разбирать претензию?",
+          "topic": "appeals",
+          "relevant_document_ids": [
+            "appeals-faq",
+            "complaints-faq",
+            "complaints-guide"
+          ],
+          "missed_document_ids": [
+            "appeals-faq"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 0.5,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-faq-insh",
+              "passage_id": "cbr-faq-insh#26",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/2806",
+              "score": 28.980130503201625,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "complaints-faq",
+              "passage_id": "complaints-faq#04",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/7912",
+              "score": 28.895999148736777,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "complaints-guide",
+              "passage_id": "complaints-guide#01",
+              "url": "https://www.cbr.ru/protection_rights/",
+              "score": 15.920266637212453,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t04",
+          "question": "Хочу запретить выдачу новых займов на своё имя. Куда подать заявление и где появится запись?",
+          "topic": "self-ban",
+          "relevant_document_ids": [
+            "selfban-guide",
+            "selfban-launch",
+            "selfban-slides"
+          ],
+          "missed_document_ids": [
+            "selfban-launch",
+            "selfban-slides"
+          ],
+          "recall": 0.3333333333333333,
+          "reciprocal_rank": 0.5,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "bankruptcy-fns",
+              "passage_id": "bankruptcy-fns#01",
+              "url": "https://www.nalog.gov.ru/rn50/news/activities_fts/16541387/",
+              "score": 18.97211486895108,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "selfban-guide",
+              "passage_id": "selfban-guide#01",
+              "url": "https://www.cbr.ru/ckki/self-prohibition_credit/",
+              "score": 18.638159453470365,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "credit-history-faq",
+              "passage_id": "credit-history-faq#32",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/10990",
+              "score": 18.268717688592357,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t05",
+          "question": "Могу ли я перекрыть только онлайн-займы в МФО, сохранив возможность сходить в офис?",
+          "topic": "self-ban",
+          "relevant_document_ids": [
+            "selfban-guide",
+            "selfban-launch",
+            "selfban-slides"
+          ],
+          "missed_document_ids": [
+            "selfban-launch",
+            "selfban-slides"
+          ],
+          "recall": 0.3333333333333333,
+          "reciprocal_rank": 0.5,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "loan-cooling-faq",
+              "passage_id": "loan-cooling-faq#04",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11225",
+              "score": 18.888857234784258,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "selfban-guide",
+              "passage_id": "selfban-guide#01",
+              "url": "https://www.cbr.ru/ckki/self-prohibition_credit/",
+              "score": 15.962864941820829,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-faq-bank-s-second-hand-service",
+              "passage_id": "cbr-faq-bank-s-second-hand-service#04",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11213",
+              "score": 15.87531776670135,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t06",
+          "question": "Кредитор оформил потребительский заём вопреки действующему самозапрету. Может ли он требовать погашения?",
+          "topic": "self-ban",
+          "relevant_document_ids": [
+            "selfban-guide",
+            "selfban-launch",
+            "selfban-report"
+          ],
+          "missed_document_ids": [
+            "selfban-report"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "selfban-launch",
+              "passage_id": "selfban-launch#02",
+              "url": "https://www.cbr.ru/press/event/?id=23423",
+              "score": 39.645647263199194,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "selfban-guide",
+              "passage_id": "selfban-guide#03",
+              "url": "https://www.cbr.ru/ckki/self-prohibition_credit/",
+              "score": 28.69287492518409,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "credit-history-faq",
+              "passage_id": "credit-history-faq#36",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/9698",
+              "score": 24.894623702746287,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t07",
+          "question": "Подписал обычный потребительский заём на 120 тысяч рублей. Когда деньги станут доступны?",
+          "topic": "credit-cooling",
+          "relevant_document_ids": [
+            "loan-cooling-faq",
+            "loan-cooling-launch",
+            "loan-cooling-law-news",
+            "loan-cooling-report"
+          ],
+          "missed_document_ids": [
+            "loan-cooling-law-news",
+            "loan-cooling-report"
+          ],
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "loan-cooling-launch",
+              "passage_id": "loan-cooling-launch#01",
+              "url": "https://www.cbr.ru/press/event/?id=26876",
+              "score": 27.748914048679644,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "auto-cooling",
+              "passage_id": "auto-cooling#01",
+              "url": "https://www.cbr.ru/press/event/?id=26805",
+              "score": 23.918129519549083,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "loan-cooling-faq",
+              "passage_id": "loan-cooling-faq#03",
+              "url": "https://www.cbr.ru/faq/information_security/cooling-off_period/",
+              "score": 21.29223837520198,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t08",
+          "question": "Перекредитовываюсь на ту же сумму, размер прежнего долга не увеличивается. Нужна ли отсрочка выдачи?",
+          "topic": "credit-cooling",
+          "relevant_document_ids": [
+            "loan-cooling-faq",
+            "loan-cooling-launch",
+            "loan-cooling-law-news"
+          ],
+          "missed_document_ids": [
+            "loan-cooling-launch",
+            "loan-cooling-law-news"
+          ],
+          "recall": 0.3333333333333333,
+          "reciprocal_rank": 0.5,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-microfinance-explan-kpk",
+              "passage_id": "cbr-microfinance-explan-kpk#34",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11140",
+              "score": 18.65047621868907,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "loan-cooling-faq",
+              "passage_id": "loan-cooling-faq#02",
+              "url": "https://www.cbr.ru/faq/information_security/cooling-off_period/",
+              "score": 18.061901735479346,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-explan-measures-support-citizens-economy",
+              "passage_id": "cbr-explan-measures-support-citizens-economy#52",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/5900",
+              "score": 16.350076360124863,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t09",
+          "question": "Покупаю машину в кредит под её залог, деньги сразу идут автосалону-юрлицу. Обязательно ли ждать 48 часов?",
+          "topic": "credit-cooling",
+          "relevant_document_ids": [
+            "auto-cooling",
+            "auto-cooling-letter",
+            "loan-cooling-faq",
+            "loan-cooling-launch",
+            "loan-cooling-law-news"
+          ],
+          "missed_document_ids": [
+            "auto-cooling",
+            "auto-cooling-letter",
+            "loan-cooling-law-news"
+          ],
+          "recall": 0.4,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "loan-cooling-faq",
+              "passage_id": "loan-cooling-faq#04",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11225",
+              "score": 28.66230911709731,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "credit-history-faq",
+              "passage_id": "credit-history-faq#28",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/9693",
+              "score": 26.972960084209145,
+              "relevant": false
+            },
+            {
+              "rank": 3,
+              "document_id": "loan-cooling-launch",
+              "passage_id": "loan-cooling-launch#01",
+              "url": "https://www.cbr.ru/press/event/?id=26876",
+              "score": 26.15049458507965,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t10",
+          "question": "Какую сумму за месяц можно перекинуть без комиссии на свой счёт в другой кредитной организации?",
+          "topic": "own-transfers",
+          "relevant_document_ids": [
+            "banking-faq",
+            "sbp-guide",
+            "transfer-daily",
+            "transfer-explainer",
+            "transfer-launch"
+          ],
+          "missed_document_ids": [
+            "transfer-daily",
+            "transfer-launch"
+          ],
+          "recall": 0.6,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "banking-faq",
+              "passage_id": "banking-faq#62",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11180",
+              "score": 18.067615320442293,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "sbp-guide",
+              "passage_id": "sbp-guide#02",
+              "url": "https://www.cbr.ru/PSystem/sfp/",
+              "score": 15.0662444488009,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "transfer-explainer",
+              "passage_id": "transfer-explainer#05",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/10815",
+              "score": 14.727569656077451,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t11",
+          "question": "Чтобы пополнить свой счёт в другом банке через СБП, можно использовать телефон вместо реквизитов?",
+          "topic": "own-transfers",
+          "relevant_document_ids": [
+            "sbp-guide",
+            "transfer-daily",
+            "transfer-launch"
+          ],
+          "missed_document_ids": [
+            "transfer-daily"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 0.5,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "cbr-faq-nps",
+              "passage_id": "cbr-faq-nps#13",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/9720",
+              "score": 20.78472550420041,
+              "relevant": false
+            },
+            {
+              "rank": 2,
+              "document_id": "transfer-launch",
+              "passage_id": "transfer-launch#01",
+              "url": "https://www.cbr.ru/press/event/?id=18658",
+              "score": 20.320266476768,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "sbp-guide",
+              "passage_id": "sbp-guide#01",
+              "url": "https://www.cbr.ru/PSystem/sfp/",
+              "score": 20.108624934672736,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t12",
+          "question": "Может ли банк ограничить, сколько раз в день я перечисляю деньги себе в другой банк в пределах месячного лимита?",
+          "topic": "own-transfers",
+          "relevant_document_ids": [
+            "banking-faq",
+            "transfer-daily",
+            "transfer-explainer",
+            "transfer-launch"
+          ],
+          "missed_document_ids": [
+            "transfer-daily",
+            "transfer-explainer"
+          ],
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "transfer-launch",
+              "passage_id": "transfer-launch#02",
+              "url": "https://www.cbr.ru/press/event/?id=18658",
+              "score": 27.995894963887714,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "banking-faq",
+              "passage_id": "banking-faq#29",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/9137",
+              "score": 25.845804942972062,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-faq-w-fin-sector-valyutnye-scheta-i-vklady",
+              "passage_id": "cbr-faq-w-fin-sector-valyutnye-scheta-i-vklady#12",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11741",
+              "score": 20.02560456484931,
+              "relevant": false
+            }
+          ]
+        },
+        {
+          "query_id": "t13",
+          "question": "Получатель есть в базе мошеннических операций ЦБ. Проведёт ли банк перевод, если я подтвержу его в первый день?",
+          "topic": "fraud-transfers",
+          "relevant_document_ids": [
+            "fraud-block-faq",
+            "fraud-security-faq",
+            "fraud-transfer-news"
+          ],
+          "missed_document_ids": [],
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "fraud-transfer-news",
+              "passage_id": "fraud-transfer-news#01",
+              "url": "https://www.cbr.ru/press/event/?id=18865",
+              "score": 38.68346751414181,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "fraud-block-faq",
+              "passage_id": "fraud-block-faq#05",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11404",
+              "score": 25.954592362119204,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "fraud-security-faq",
+              "passage_id": "fraud-security-faq#03",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11937",
+              "score": 23.720815386909948,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t14",
+          "question": "Банк сразу пропустил мошеннический перевод на счёт из базы ЦБ. Должен ли он компенсировать потерю?",
+          "topic": "fraud-transfers",
+          "relevant_document_ids": [
+            "fraud-block-faq",
+            "fraud-security-faq",
+            "fraud-transfer-news"
+          ],
+          "missed_document_ids": [],
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "fraud-transfer-news",
+              "passage_id": "fraud-transfer-news#01",
+              "url": "https://www.cbr.ru/press/event/?id=18865",
+              "score": 27.816307633491178,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "fraud-security-faq",
+              "passage_id": "fraud-security-faq#01",
+              "url": "https://www.cbr.ru/faq/information_security/",
+              "score": 26.978023339090832,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "fraud-block-faq",
+              "passage_id": "fraud-block-faq#05",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/11404",
+              "score": 26.34861305846474,
+              "relevant": true
+            }
+          ]
+        },
+        {
+          "query_id": "t15",
+          "question": "Я сам повторил платёж на ту же сумму и по тем же реквизитам после двухдневной паузы и предупреждения. Вернёт ли банк деньги?",
+          "topic": "fraud-transfers",
+          "relevant_document_ids": [
+            "fraud-block-faq",
+            "fraud-security-faq",
+            "fraud-transfer-news"
+          ],
+          "missed_document_ids": [
+            "fraud-security-faq"
+          ],
+          "recall": 0.6666666666666666,
+          "reciprocal_rank": 1.0,
+          "results": [
+            {
+              "rank": 1,
+              "document_id": "fraud-block-faq",
+              "passage_id": "fraud-block-faq#08",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/9627",
+              "score": 32.02635562910624,
+              "relevant": true
+            },
+            {
+              "rank": 2,
+              "document_id": "fraud-transfer-news",
+              "passage_id": "fraud-transfer-news#01",
+              "url": "https://www.cbr.ru/press/event/?id=18865",
+              "score": 24.245678460551176,
+              "relevant": true
+            },
+            {
+              "rank": 3,
+              "document_id": "cbr-faq-rcb",
+              "passage_id": "cbr-faq-rcb#02",
+              "url": "https://www.cbr.ru/Reception/TopicalMessage/Page/6140",
+              "score": 16.488482672631413,
+              "relevant": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
